@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All OS Quizzes</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        #main-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        /* Menu Styling */
+        #quiz-menu {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .menu-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .menu-btn.extra { background-color: #17a2b8; }
+        .menu-btn.test { background-color: #dc3545; }
+        .menu-btn:hover {
+            opacity: 0.9;
+        }
+        .back-btn {
+            background-color: #6c757d;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* Quiz Content Styling */
+        .quiz-content {
+            display: none; /* Hidden by default */
+        }
+        .question-block {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .question-block:last-of-type {
+            border-bottom: none;
+        }
+        .question-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .options-container label {
+            display: block;
+            background-color: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .options-container label:hover {
+            background-color: #f0f0f0;
+            border-color: #007bff;
+        }
+        .options-container input {
+            margin-right: 10px;
+        }
+
+        /* Feedback Styling */
+        .correct {
+            background-color: #e9f7ef !important;
+            border-color: #2ecc71 !important;
+            font-weight: bold;
+        }
+        .incorrect {
+            background-color: #fbeae5 !important;
+            border-color: #e74c3c !important;
+        }
+        .correct::after {
+            content: ' ✔ Correct';
+            color: #2ecc71;
+            float: right;
+        }
+        .incorrect::after {
+            content: ' ✖ Incorrect';
+            color: #e74c3c;
+            float: right;
+        }
+        
+        /* Button and Results */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .results {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #e7f3ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+        <h1>Operating Systems Quizzes</h1>
+        
+        <div id="quiz-menu">
+            <h2>Select a Section to Begin</h2>
+            <button class="menu-btn" onclick="showQuiz(1)">Unit 1</button>
+            <button class="menu-btn" onclick="showQuiz(2)">Unit 2</button>
+            <button class="menu-btn" onclick="showQuiz(3)">Unit 3</button>
+            <button class="menu-btn" onclick="showQuiz(4)">Unit 4</button>
+            <button class="menu-btn" onclick="showQuiz(5)">Unit 5</button>
+            <button class="menu-btn" onclick="showQuiz(6)">Unit 6</button>
+            <button class="menu-btn" onclick="showQuiz(7)">Unit 7</button>
+            <button class="menu-btn" onclick="showQuiz(8)">Unit 8</button>
+            <hr>
+            <button class="menu-btn extra" onclick="showQuiz(9)">First Activity</button>
+            <button class="menu-btn extra" onclick="showQuiz(10)">First Homework</button>
+            <button class="menu-btn extra" onclick="showQuiz(11)">Second Activity</button>
+            <button class="menu-btn extra" onclick="showQuiz(12)">Second Homework</button>
+             <hr>
+            <button class="menu-btn test" onclick="showQuiz(13)">Monthly Test</button>
+        </div>
+
+        <button class="menu-btn back-btn" id="back-to-menu" onclick="showMenu()" style="display: none;">Back to Menu</button>
+
+        <div id="quiz-unit-1" class="quiz-content">
+            <h2>Unit 1 Quiz: Introduction</h2>
+            <form id="quiz-form-1">
+                <div class="question-block"><p class="question-text">1. What is the purpose of a bootstrap program?</p><div class="options-container"><label><input type="radio" name="q1-1" value="a"> To manage file systems</label><label><input type="radio" name="q1-1" value="b"> To handle network connections</label><label><input type="radio" name="q1-1" value="c"> To initialize the system and load the kernel</label><label><input type="radio" name="q1-1" value="d"> To execute application programs</label></div></div>
+                <div class="question-block"><p class="question-text">2. Which of the following statements is true regarding operating systems in mobile devices?</p><div class="options-container"><label><input type="radio" name="q1-2" value="a"> They prioritize high-performance computing</label><label><input type="radio" name="q1-2" value="b"> They are identical to desktop operating systems</label><label><input type="radio" name="q1-2" value="c"> They are optimized for usability and battery life</label><label><input type="radio" name="q1-2" value="d"> They do not support touch interfaces</label></div></div>
+                <div class="question-block"><p class="question-text">3. What is the primary function of an operating system?</p><div class="options-container"><label><input type="radio" name="q1-3" value="a"> To act as intermediary between a user and the computer hardware</label><label><input type="radio" name="q1-3" value="b"> To provide a user-friendly interface</label><label><input type="radio" name="q1-3" value="c"> To execute application programs</label><label><input type="radio" name="q1-3" value="d"> To manage network connections</label></div></div>
+                <div class="question-block"><p class="question-text">4. What is the function of a device driver in an operating system?</p><div class="options-container"><label><input type="radio" name="q1-4" value="a"> To provide a uniform interface between the controller and the kernel</label><label><input type="radio" name="q1-4" value="b"> To directly handle all I/O operations</label><label><input type="radio" name="q1-4" value="c"> To manage the boot process of the system</label><label><input type="radio" name="q1-4" value="d"> To control user access to system resources</label></div></div>
+                <div class="question-block"><p class="question-text">5. In a multiprogramming environment, the operating system must switch between different jobs to:</p><div class="options-container"><label><input type="radio" name="q1-5" value="a"> Improve user interface</label><label><input type="radio" name="q1-5" value="b"> Save energy</label><label><input type="radio" name="q1-5" value="c"> Enhance network performance</label><label><input type="radio" name="q1-5" value="d"> Keep the CPU and I/O devices busy</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which of the following is NOT a characteristic of dual-mode operation in operating systems?</p><div class="options-container"><label><input type="radio" name="q1-6" value="a"> User mode and kernel mode distinction</label><label><input type="radio" name="q1-6" value="b"> Privileged instructions can only be executed in kernel mode</label><label><input type="radio" name="q1-6" value="c"> System calls change mode to kernel</label><label><input type="radio" name="q1-6" value="d"> User programs can directly set the mode bit to kernel</label></div></div>
+                <div class="question-block"><p class="question-text">7. Which type of storage is typically volatile and provides direct access to the CPU?</p><div class="options-container"><label><input type="radio" name="q1-7" value="a"> Hard Disk Drives (HDD)</label><label><input type="radio" name="q1-7" value="b"> Non-Volatile Memory (NVM)</label><label><input type="radio" name="q1-7" value="c"> Main Memory (RAM)</label><label><input type="radio" name="q1-7" value="d"> Optical Storage</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which of the following is NOT a component of a computer system?</p><div class="options-container"><label><input type="radio" name="q1-8" value="a"> Hardware</label><label><input type="radio" name="q1-8" value="b"> Operating System</label><label><input type="radio" name="q1-8" value="c"> Application Programs</label><label><input type="radio" name="q1-8" value="d"> Internet</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the role of middleware in an operating system?</p><div class="options-container"><label><input type="radio" name="q1-9" value="a"> To directly interact with the hardware</label><label><input type="radio" name="q1-9" value="b"> To manage user authentication</label><label><input type="radio" name="q1-9" value="c"> To serve as the core part of the kernel</label><label><input type="radio" name="q1-9" value="d"> To provide additional services to application developers</label></div></div>
+                <div class="question-block"><p class="question-text">10. What is the main goal of timesharing in operating systems?</p><div class="options-container"><label><input type="radio" name="q1-10" value="a"> To provide a high-speed network</label><label><input type="radio" name="q1-10" value="b"> To enhance multimedia performance</label><label><input type="radio" name="q1-10" value="c"> To manage hardware resources</label><label><input type="radio" name="q1-10" value="d"> To ensure rapid job switching for interactive computing</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 1 Answers</button>
+            </form>
+            <div id="results-1" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-2" class="quiz-content">
+            <h2>Unit 2 Quiz: OS Structures</h2>
+            <form id="quiz-form-2">
+                <div class="question-block"><p class="question-text">1. Which interface allows direct command entry?</p><div class="options-container"><label><input type="radio" name="q2-1" value="a"> GUI</label><label><input type="radio" name="q2-1" value="b"> Batch</label><label><input type="radio" name="q2-1" value="c"> CLI</label><label><input type="radio" name="q2-1" value="d"> Touchscreen</label></div></div>
+                <div class="question-block"><p class="question-text">2. What must the system be able to do to support program execution?</p><div class="options-container"><label><input type="radio" name="q2-2" value="a"> End execution normally</label><label><input type="radio" name="q2-2" value="b"> Load a program into memory</label><label><input type="radio" name="q2-2" value="c"> End execution abnormally</label><label><input type="radio" name="q2-2" value="d"> All of the above</label></div></div>
+                <div class="question-block"><p class="question-text">3. Which method is used for process communication over a network?</p><div class="options-container"><label><input type="radio" name="q2-3" value="a"> Shared memory</label><label><input type="radio" name="q2-3" value="b"> Message passing</label><label><input type="radio" name="q2-3" value="c"> Packets moved by OS</label><label><input type="radio" name="q2-3" value="d"> All of the above</label></div></div>
+                <div class="question-block"><p class="question-text">4. How are touchscreen interfaces typically operated?</p><div class="options-container"><label><input type="radio" name="q2-4" value="a"> Gestures</label><label><input type="radio" name="q2-4" value="b"> Mouse</label><label><input type="radio" name="q2-4" value="c"> Keyboard</label><label><input type="radio" name="q2-4" value="d"> All of the above</label></div></div>
+                <div class="question-block"><p class="question-text">5. What method does Linux use to pass parameters to the OS?</p><div class="options-container"><label><input type="radio" name="q2-5" value="a"> Registers</label><label><input type="radio" name="q2-5" value="b"> Block in memory</label><label><input type="radio" name="q2-5" value="c"> Stack</label><label><input type="radio" name="q2-5" value="d"> None of the above</label></div></div>
+                <div class="question-block"><p class="question-text">6. What is essential for an operating system when multiple users or jobs are running concurrently?</p><div class="options-container"><label><input type="radio" name="q2-6" value="a"> Debugging</label><label><input type="radio" name="q2-6" value="b"> Resource allocation</label><label><input type="radio" name="q2-6" value="c"> File management</label><label><input type="radio" name="q2-6" value="d"> Communication</label></div></div>
+                <div class="question-block"><p class="question-text">7. Which user interface is almost always present in operating systems?</p><div class="options-container"><label><input type="radio" name="q2-7" value="a"> Command-Line Interface (CLI)</label><label><input type="radio" name="q2-7" value="b"> Graphics User Interface (GUI)</label><label><input type="radio" name="q2-7" value="c"> Touch-screen</label><label><input type="radio" name="q2-7" value="d"> User Interface (UI)</label></div></div>
+                <div class="question-block"><p class="question-text">8. What service ensures the system is constantly aware of possible errors?</p><div class="options-container"><label><input type="radio" name="q2-8" value="a"> Debugging</label><label><input type="radio" name="q2-8" value="b"> Communication</label><label><input type="radio" name="q2-8" value="c"> Error detection</label><label><input type="radio" name="q2-8" value="d"> Resource allocation</label></div></div>
+                <div class="question-block"><p class="question-text">9. What kind of OS interface is "Aqua" in Apple Mac OS X?</p><div class="options-container"><label><input type="radio" name="q2-9" value="a"> CLI</label><label><input type="radio" name="q2-9" value="b"> GUI</label><label><input type="radio" name="q2-9" value="c"> Batch</label><label><input type="radio" name="q2-9" value="d"> Touchscreen</label></div></div>
+                <div class="question-block"><p class="question-text">10. Which programming language is not typically used for system calls?</p><div class="options-container"><label><input type="radio" name="q2-10" value="a"> Python</label><label><input type="radio" name="q2-10" value="b"> C</label><label><input type="radio" name="q2-10" value="c"> C++</label><label><input type="radio" name="q2-10" value="d"> Java</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 2 Answers</button>
+            </form>
+            <div id="results-2" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-3" class="quiz-content">
+            <h2>Unit 3 Quiz: Processes</h2>
+            <form id="quiz-form-3">
+                <div class="question-block"><p class="question-text">1. What is the role of the short-term scheduler?</p><div class="options-container"><label><input type="radio" name="q3-1" value="a"> Managing memory allocation</label><label><input type="radio" name="q3-1" value="b"> Managing I/O devices</label><label><input type="radio" name="q3-1" value="c"> Selecting which processes should be brought from disk into the ready queue</label><label><input type="radio" name="q3-1" value="d"> Selecting which process should be executed next from the ready queue</label></div></div>
+                <div class="question-block"><p class="question-text">2. What does a program file contain?</p><div class="options-container"><label><input type="radio" name="q3-2" value="a"> Only executable code</label><label><input type="radio" name="q3-2" value="b"> Only data</label><label><input type="radio" name="q3-2" value="c"> Executable code and data</label><label><input type="radio" name="q3-2" value="d"> Only machine instructions</label></div></div>
+                <div class="question-block"><p class="question-text">3. What information does the program counter in the PCB hold?</p><div class="options-container"><label><input type="radio" name="q3-3" value="a"> Address of the next instruction to be executed</label><label><input type="radio" name="q3-3" value="b"> Address of the previous instruction executed</label><label><input type="radio" name="q3-3" value="c"> Total number of instructions executed</label><label><input type="radio" name="q3-3" value="d"> Current process state</label></div></div>
+                <div class="question-block"><p class="question-text">4. Which of the following sections is NOT part of a process in memory?</p><div class="options-container"><label><input type="radio" name="q3-4" value="a"> Text section</label><label><input type="radio" name="q3-4" value="b"> Data section</label><label><input type="radio" name="q3-4" value="c"> Stack section</label><label><input type="radio" name="q3-4" value="d"> Processor section</label></div></div>
+                <div class="question-block"><p class="question-text">5. In a multitasking mobile system, what is the role of the foreground process?</p><div class="options-container"><label><input type="radio" name="q3-5" value="a"> Running in the background</label><label><input type="radio" name="q3-5" value="b"> Running a single short task</label><label><input type="radio" name="q3-5" value="c"> Controlled via user interface</label><label><input type="radio" name="q3-5" value="d"> Running without limits</label></div></div>
+                <div class="question-block"><p class="question-text">6. What happens when an executable file is loaded into memory by the OS loader?</p><div class="options-container"><label><input type="radio" name="q3-6" value="a"> It becomes a job</label><label><input type="radio" name="q3-6" value="b"> It becomes a process</label><label><input type="radio" name="q3-6" value="c"> It becomes a thread</label><label><input type="radio" name="q3-6" value="d"> It becomes a task</label></div></div>
+                <div class="question-block"><p class="question-text">7. What does the term 'swapping' refer to in the context of process scheduling?</p><div class="options-container"><label><input type="radio" name="q3-7" value="a"> Switching from one process to another</label><label><input type="radio" name="q3-7" value="b"> Temporarily removing processes from main memory to secondary memory</label><label><input type="radio" name="q3-7" value="c"> Allocating CPU time to a process</label><label><input type="radio" name="q3-7" value="d"> Allocating memory to a process</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which section of the PCB contains the list of I/O devices allocated to the process?</p><div class="options-container"><label><input type="radio" name="q3-8" value="a"> CPU scheduling information</label><label><input type="radio" name="q3-8" value="b"> Memory-management information</label><label><input type="radio" name="q3-8" value="c"> Accounting information</label><label><input type="radio" name="q3-8" value="d"> I/O status information</label></div></div>
+                <div class="question-block"><p class="question-text">9. Which of the following is NOT a state of a process?</p><div class="options-container"><label><input type="radio" name="q3-9" value="a"> Paused</label><label><input type="radio" name="q3-9" value="b"> New</label><label><input type="radio" name="q3-9" value="c"> Running</label><label><input type="radio" name="q3-9" value="d"> Terminated</label></div></div>
+                <div class="question-block"><p class="question-text">10. Which type of process spends more time doing I/O than computations?</p><div class="options-container"><label><input type="radio" name="q3-10" value="a"> CPU-bound process</label><label><input type="radio" name="q3-10" value="b"> Memory-bound process</label><label><input type="radio" name="q3-10" value="c"> I/O-bound process</label><label><input type="radio" name="q3-10" value="d"> Time-bound process</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 3 Answers</button>
+            </form>
+            <div id="results-3" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-4" class="quiz-content">
+            <h2>Unit 4 Quiz: Threads</h2>
+            <form id="quiz-form-4">
+                <div class="question-block"><p class="question-text">1. What is one advantage of creating threads over creating processes in terms of resource allocation?</p><div class="options-container"><label><input type="radio" name="q4-1" value="a"> Economy</label><label><input type="radio" name="q4-1" value="b"> Isolation</label><label><input type="radio" name="q4-1" value="c"> Portability</label><label><input type="radio" name="q4-1" value="d"> Compatibility</label></div></div>
+                <div class="question-block"><p class="question-text">2. Which component of process switching overhead involves saving and loading the CPU state?</p><div class="options-container"><label><input type="radio" name="q4-2" value="a"> Resource use related overhead</label><label><input type="radio" name="q4-2" value="b"> Execution related overhead</label><label><input type="radio" name="q4-2" value="c"> Memory allocation overhead</label><label><input type="radio" name="q4-2" value="d"> I/O operation overhead</label></div></div>
+                <div class="question-block"><p class="question-text">3. Which threading model maps many user-level threads to a smaller or equal number of kernel threads?</p><div class="options-container"><label><input type="radio" name="q4-3" value="a"> One-to-One</label><label><input type="radio" name="q4-3" value="b"> Many-to-Many</label><label><input type="radio" name="q4-3" value="c"> One-to-Many</label><label><input type="radio" name="q4-3" value="d"> Many-to-One</label></div></div>
+                <div class="question-block"><p class="question-text">4. What does a multi-threaded web server achieve compared to a single-threaded web server?</p><div class="options-container"><label><input type="radio" name="q4-4" value="a"> Better security</label><label><input type="radio" name="q4-4" value="b"> Simpler implementation</label><label><input type="radio" name="q4-4" value="c"> Concurrent service to multiple clients with less overhead</label><label><input type="radio" name="q4-4" value="d"> Higher resource usage</label></div></div>
+                <div class="question-block"><p class="question-text">5. What does the traditional view of a process consist of?</p><div class="options-container"><label><input type="radio" name="q4-5" value="a"> Code, data, stack, and heap</label><label><input type="radio" name="q4-5" value="b"> Process context, code, data, and stack</label><label><input type="radio" name="q4-5" value="c"> Thread, code, data, and kernel context</label><label><input type="radio" name="q4-5" value="d"> Program counter, stack, and heap</label></div></div>
+                <div class="question-block"><p class="question-text">6. What is the primary benefit of using threads over processes to achieve concurrency?</p><div class="options-container"><label><input type="radio" name="q4-6" value="a"> Lower memory usage</label><label><input type="radio" name="q4-6" value="b"> Easier programming model</label><label><input type="radio" name="q4-6" value="c"> Reduction in switching overhead</label><label><input type="radio" name="q4-6" value="d"> More secure execution</label></div></div>
+                <div class="question-block"><p class="question-text">7. What is a thread sometimes referred to as?</p><div class="options-container"><label><input type="radio" name="q4-7" value="a"> Heavyweight process</label><label><input type="radio" name="q4-7" value="b"> Lightweight process</label><label><input type="radio" name="q4-7" value="c"> Kernel-level process</label><label><input type="radio" name="q4-7" value="d"> User-level process</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which type of parallelism involves distributing threads across cores with each thread performing unique operations?</p><div class="options-container"><label><input type="radio" name="q4-8" value="a"> Task parallelism</label><label><input type="radio" name="q4-8" value="b"> Data parallelism</label><label><input type="radio" name="q4-8" value="c"> Instruction-level parallelism</label><label><input type="radio" name="q4-8" value="d"> Pipeline parallelism</label></div></div>
+                <div class="question-block"><p class="question-text">9. In the modern view of a process, what constitutes a process?</p><div class="options-container"><label><input type="radio" name="q4-9" value="a"> Process context and thread</label><label><input type="radio" name="q4-9" value="b"> Thread and heap</label><label><input type="radio" name="q4-9" value="c"> Thread, code, data, and kernel context</label><label><input type="radio" name="q4-9" value="d"> Code, data, and stack</label></div></div>
+                <div class="question-block"><p class="question-text">10. What benefit does multithreading provide in an interactive application?</p><div class="options-container"><label><input type="radio" name="q4-10" value="a"> Responsiveness</label><label><input type="radio" name="q4-10" value="b"> Increased security</label><label><input type="radio" name="q4-10" value="c"> Simpler coding</label><label><input type="radio" name="q4-10" value="d"> Reduced memory usage</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 4 Answers</button>
+            </form>
+            <div id="results-4" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-5" class="quiz-content">
+            <h2>Unit 5 Quiz: CPU Scheduling</h2>
+            <form id="quiz-form-5">
+                <div class="question-block"><p class="question-text">1. When can CPU scheduling decisions take place?</p><div class="options-container"><label><input type="radio" name="q5-1" value="a"> When a process terminates</label><label><input type="radio" name="q5-1" value="b"> When a process switches from running to waiting state</label><label><input type="radio" name="q5-1" value="c"> When a process switches from running to ready state</label><label><input type="radio" name="q5-1" value="d"> All of the above</label></div></div>
+                <div class="question-block"><p class="question-text">2. In a single-processor system, how many processes can run at a time?</p><div class="options-container"><label><input type="radio" name="q5-2" value="a"> None</label><label><input type="radio" name="q5-2" value="b"> One</label><label><input type="radio" name="q5-2" value="c"> Two</label><label><input type="radio" name="q5-2" value="d"> As many as the memory allows</label></div></div>
+                <div class="question-block"><p class="question-text">3. Which scheduling policy is used by most modern operating systems like Windows and Linux?</p><div class="options-container"><label><input type="radio" name="q5-3" value="a"> Non-preemptive scheduling</label><label><input type="radio" name="q5-3" value="b"> Preemptive scheduling</label><label><input type="radio" name="q5-3" value="c"> First-Come, First-Served scheduling</label><label><input type="radio" name="q5-3" value="d"> Round Robin scheduling</label></div></div>
+                <div class="question-block"><p class="question-text">4. What happens in non-preemptive scheduling once the CPU is allocated to a process?</p><div class="options-container"><label><input type="radio" name="q5-4" value="a"> The process can be interrupted at any time</label><label><input type="radio" name="q5-4" value="b"> The process keeps the CPU until it releases it</label><label><input type="radio" name="q5-4" value="c"> The CPU is allocated to the next process immediately</label><label><input type="radio" name="q5-4" value="d"> The CPU switches between processes frequently</label></div></div>
+                <div class="question-block"><p class="question-text">5. In Round Robin scheduling, what happens when the time quantum expires for a process?</p><div class="options-container"><label><input type="radio" name="q5-5" value="a"> The process is terminated</label><label><input type="radio" name="q5-5" value="b"> The process is moved to the end of the ready queue</label><label><input type="radio" name="q5-5" value="c"> The process continues to run</label><label><input type="radio" name="q5-5" value="d"> The process is given a higher priority</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which scheduler is responsible for selecting a process from the ready queue and assigning it to the CPU?</p><div class="options-container"><label><input type="radio" name="q5-6" value="a"> Long-term scheduler</label><label><input type="radio" name="q5-6" value="b"> Medium-term scheduler</label><label><input type="radio" name="q5-6" value="c"> Short-term scheduler</label><label><input type="radio" name="q5-6" value="d"> Job scheduler</label></div></div>
+                <div class="question-block"><p class="question-text">7. What is the main disadvantage of the First-Come, First-Served (FCFS) scheduling?</p><div class="options-container"><label><input type="radio" name="q5-7" value="a"> It is difficult to implement</label><label><input type="radio" name="q5-7" value="b"> It causes convoy effect where short processes wait for long processes</label><label><input type="radio" name="q5-7" value="c"> It is not suitable for batch systems</label><label><input type="radio" name="q5-7" value="d"> It has high scheduling overhead</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which scheduling algorithm gives the minimum average waiting time for a given set of processes?</p><div class="options-container"><label><input type="radio" name="q5-8" value="a"> First-Come, First-Served (FCFS)</label><label><input type="radio" name="q5-8" value="b"> Round Robin (RR)</label><label><input type="radio" name="q5-8" value="c"> Shortest-Job-First (SJF)</label><label><input type="radio" name="q5-8" value="d"> Priority scheduling</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the main goal of multiprogramming?</p><div class="options-container"><label><input type="radio" name="q5-9" value="a"> To execute multiple processes simultaneously</label><label><input type="radio" name="q5-9" value="b"> To reduce the waiting time for processes</label><label><input type="radio" name="q5-9" value="c"> To keep the CPU busy by executing one process while others wait</label><label><input type="radio" name="q5-9" value="d"> To minimize the number of context switches</label></div></div>
+                <div class="question-block"><p class="question-text">10. What is a key characteristic of Round Robin (RR) scheduling?</p><div class="options-container"><label><input type="radio" name="q5-10" value="a"> Processes are scheduled in a cyclic order</label><label><input type="radio" name="q5-10" value="b"> It is non-preemptive</label><label><input type="radio" name="q5-10" value="c"> It assigns the highest priority to the longest job</label><label><input type="radio" name="q5-10" value="d"> It uses a single queue for all processes</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 5 Answers</button>
+            </form>
+            <div id="results-5" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-6" class="quiz-content">
+            <h2>Unit 6 Quiz: Memory Management</h2>
+            <form id="quiz-form-6">
+                <div class="question-block"><p class="question-text">1. When does execution-time address binding occur?</p><div class="options-container"><label><input type="radio" name="q6-1" value="a"> During compile time</label><label><input type="radio" name="q6-1" value="b"> During load time</label><label><input type="radio" name="q6-1" value="c"> During run time</label><label><input type="radio" name="q6-1" value="d"> During process creation</label></div></div>
+                <div class="question-block"><p class="question-text">2. Which type of memory access is the fastest in terms of CPU clock cycles?</p><div class="options-container"><label><input type="radio" name="q6-2" value="a"> Virtual memory</label><label><input type="radio" name="q6-2" value="b"> Main memory</label><label><input type="radio" name="q6-2" value="c"> Cache</label><label><input type="radio" name="q6-2" value="d"> Registers</label></div></div>
+                <div class="question-block"><p class="question-text">3. What device maps virtual addresses to physical addresses at runtime?</p><div class="options-container"><label><input type="radio" name="q6-3" value="a"> Base register</label><label><input type="radio" name="q6-3" value="b"> Memory-Management Unit (MMU)</label><label><input type="radio" name="q6-3" value="c"> Page table</label><label><input type="radio" name="q6-3" value="d"> Limit register</label></div></div>
+                <div class="question-block"><p class="question-text">4. What is one advantage of contiguous allocation in memory management?</p><div class="options-container"><label><input type="radio" name="q6-4" value="a"> Eliminates internal fragmentation</label><label><input type="radio" name="q6-4" value="b"> Simplifies memory allocation</label><label><input type="radio" name="q6-4" value="c"> Allows noncontiguous memory allocation</label><label><input type="radio" name="q6-4" value="d"> Reduces external fragmentation</label></div></div>
+                <div class="question-block"><p class="question-text">5. What is the main problem addressed by the dynamic storage-allocation problem?</p><div class="options-container"><label><input type="radio" name="q6-5" value="a"> Managing large amounts of code</label><label><input type="radio" name="q6-5" value="b"> Binding logical to physical addresses</label><label><input type="radio" name="q6-5" value="c"> Handling page table entries</label><label><input type="radio" name="q6-5" value="d"> Satisfying a request of size n from a list of free holes</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which paging method reduces external fragmentation?</p><div class="options-container"><label><input type="radio" name="q6-6" value="a"> Paging</label><label><input type="radio" name="q6-6" value="b"> Contiguous allocation</label><label><input type="radio" name="q6-6" value="c"> Variable partition</label><label><input type="radio" name="q6-6" value="d"> Dynamic storage allocation</label></div></div>
+                <div class="question-block"><p class="question-text">7. What is a logical address also referred to as?</p><div class="options-container"><label><input type="radio" name="q6-7" value="a"> Physical address</label><label><input type="radio" name="q6-7" value="b"> Virtual address</label><label><input type="radio" name="q6-7" value="c"> Relocatable address</label><label><input type="radio" name="q6-7" value="d"> Absolute address</label></div></div>
+                <div class="question-block"><p class="question-text">8. What is the role of base and limit registers in memory protection?</p><div class="options-container"><label><input type="radio" name="q6-8" value="a"> They store memory addresses</label><label><input type="radio" name="q6-8" value="b"> They define the logical address space of a process</label><label><input type="radio" name="q6-8" value="c"> They provide hardware support for address maps</label><label><input type="radio" name="q6-8" value="d"> They define the logical address space of a process</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the primary benefit of dynamic loading?</p><div class="options-container"><label><input type="radio" name="q6-9" value="a"> Faster execution time</label><label><input type="radio" name="q6-9" value="b"> Better memory-space utilization</label><label><input type="radio" name="q6-9" value="c"> Easier debugging</label><label><input type="radio" name="q6-9" value="d"> Simpler program design</label></div></div>
+                <div class="question-block"><p class="question-text">10. How does dynamic linking differ from static linking?</p><div class="options-container"><label><input type="radio" name="q6-10" value="a"> It combines system libraries with program code</label><label><input type="radio" name="q6-10" value="b"> Linking is postponed until execution time</label><label><input type="radio" name="q6-10" value="c"> It uses absolute addresses</label><label><input type="radio" name="q6-10" value="d"> It does not use stubs</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 6 Answers</button>
+            </form>
+            <div id="results-6" class="results"></div>
+        </div>
+        
+        <div id="quiz-unit-7" class="quiz-content">
+            <h2>Unit 7 Quiz: I/O Management</h2>
+            <form id="quiz-form-7">
+                <div class="question-block"><p class="question-text">1. Which of the following is a major component of operating system design and operation related to I/O management?</p><div class="options-container"><label><input type="radio" name="q7-1" value="a"> Device controllers</label><label><input type="radio" name="q7-1" value="b"> Interrupt handling</label><label><input type="radio" name="q7-1" value="c"> Performance management</label><label><input type="radio" name="q7-1" value="d"> Memory management</label></div></div>
+                <div class="question-block"><p class="question-text">2. What does the "truncate" file operation do?</p><div class="options-container"><label><input type="radio" name="q7-2" value="a"> Deletes a file</label><label><input type="radio" name="q7-2" value="b"> Reduces the file size</label><label><input type="radio" name="q7-2" value="c"> Moves the file</label><label><input type="radio" name="q7-2" value="d"> Copies the file</label></div></div>
+                <div class="question-block"><p class="question-text">3. In the context of file locking, what type of lock allows several processes to acquire it concurrently?</p><div class="options-container"><label><input type="radio" name="q7-3" value="a"> Shared lock</label><label><input type="radio" name="q7-3" value="b"> Exclusive lock</label><label><input type="radio" name="q7-3" value="c"> Read lock</label><label><input type="radio" name="q7-3" value="d"> Write lock</label></div></div>
+                <div class="question-block"><p class="question-text">4. How does Direct Memory Access (DMA) improve I/O performance?</p><div class="options-container"><label><input type="radio" name="q7-4" value="a"> By allowing CPU to execute other instructions while data transfer occurs</label><label><input type="radio" name="q7-4" value="b"> By increasing the speed of the bus</label><label><input type="radio" name="q7-4" value="c"> By using larger data buffers</label><label><input type="radio" name="q7-4" value="d"> By enabling direct CPU-to-device communication</label></div></div>
+                <div class="question-block"><p class="question-text">5. What is the role of a host adapter in I/O management?</p><div class="options-container"><label><input type="radio" name="q7-5" value="a"> To perform direct data transfers between memory and I/O devices</label><label><input type="radio" name="q7-5" value="b"> To manage CPU instruction execution</label><label><input type="radio" name="q7-5" value="c"> To control ports, buses, and devices</label><label><input type="radio" name="q7-5" value="d"> To handle network communication</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which file attribute is used to uniquely identify a file within a file system?</p><div class="options-container"><label><input type="radio" name="q7-6" value="a"> Name</label><label><input type="radio" name="q7-6" value="b"> Identifier</label><label><input type="radio" name="q7-6" value="c"> Type</label><label><input type="radio" name="q7-6" value="d"> Location</label></div></div>
+                <div class="question-block"><p class="question-text">7. Which of the following is a common interface used for connecting disk drives?</p><div class="options-container"><label><input type="radio" name="q7-7" value="a"> PCI Express (PCIe)</label><label><input type="radio" name="q7-7" value="b"> Fibre Channel (FC)</label><label><input type="radio" name="q7-7" value="c"> Serial-attached SCSI (SAS)</label><label><input type="radio" name="q7-7" value="d"> Universal Serial Bus (USB)</label></div></div>
+                <div class="question-block"><p class="question-text">8. What is the function of the data-in register in I/O device control?</p><div class="options-container"><label><input type="radio" name="q7-8" value="a"> To hold data to be written to the device</label><label><input type="radio" name="q7-8" value="b"> To store the address of the device</label><label><input type="radio" name="q7-8" value="c"> To receive data read from the device</label><label><input type="radio" name="q7-8" value="d"> To indicate device status</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the role of the file-open count?</p><div class="options-container"><label><input type="radio" name="q7-9" value="a"> To allow removal of data from the open-file table when the last process closes it</label><label><input type="radio" name="q7-9" value="b"> To count the number of reads</label><label><input type="radio" name="q7-9" value="c"> To keep track of file size</label><label><input type="radio" name="q7-9" value="d"> To manage file permissions</label></div></div>
+                <div class="question-block"><p class="question-text">10. What is the main purpose of an index in other access methods?</p><div class="options-container"><label><input type="radio" name="q7-10" value="a"> To keep track of file permissions</label><label><input type="radio" name="q7-10" value="b"> To count the number of file accesses</label><label><input type="radio" name="q7-10" value="c"> To determine the location of data quickly</label><label><input type="radio" name="q7-10" value="d"> To keep track of file sizes</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 7 Answers</button>
+            </form>
+            <div id="results-7" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-8" class="quiz-content">
+            <h2>Unit 8 Quiz: Virtualization</h2>
+            <form id="quiz-form-8">
+                <div class="question-block"><p class="question-text">1. What is the primary purpose of a Virtual Machine Manager (VMM) or hypervisor?</p><div class="options-container"><label><input type="radio" name="q8-1" value="a"> To manage network connections</label><label><input type="radio" name="q8-1" value="b"> To create and run virtual machines by providing an interface identical to the host</label><label><input type="radio" name="q8-1" value="c"> To act as a firewall</label><label><input type="radio" name="q8-1" value="d"> To manage physical hardware components</label></div></div>
+                <div class="question-block"><p class="question-text">2. What is a significant benefit of virtualization in the context of security?</p><div class="options-container"><label><input type="radio" name="q8-2" value="a"> Faster execution of programs</label><label><input type="radio" name="q8-2" value="b"> Reduced need for hardware</label><label><input type="radio" name="q8-2" value="c"> Enhanced protection from viruses spreading between VMs</label><label><input type="radio" name="q8-2" value="d"> Simplified application development</label></div></div>
+                <div class="question-block"><p class="question-text">3. Which hypervisor type typically runs in company datacenters and acts like a "datacenter operating system"?</p><div class="options-container"><label><input type="radio" name="q8-3" value="a"> Type 0 hypervisor</label><label><input type="radio" name="q8-3" value="b"> Type 1 hypervisor</label><label><input type="radio" name="q8-3" value="c"> Type 2 hypervisor</label><label><input type="radio" name="q8-3" value="d"> Paravirtualization</label></div></div>
+                <div class="question-block"><p class="question-text">4. What is "live migration" in virtualization?</p><div class="options-container"><label><input type="radio" name="q8-4" value="a"> Moving a VM's data to a new location</label><label><input type="radio" name="q8-4" value="b"> Creating a snapshot of a VM</label><label><input type="radio" name="q8-4" value="c"> Moving a running VM from one host to another without interruption</label><label><input type="radio" name="q8-4" value="d"> Shutting down a VM and restarting it on a new host</label></div></div>
+                <div class="question-block"><p class="question-text">5. What technique is used in paravirtualization to optimize performance?</p><div class="options-container"><label><input type="radio" name="q8-5" value="a"> Binary translation</label><label><input type="radio" name="q8-5" value="b"> Emulation</label><label><input type="radio" name="q8-5" value="c"> Modifying the guest operating system to work with the VMM</label><label><input type="radio" name="q8-5" value="d"> Direct device access</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which of the following accurately describes a Type 2 hypervisor?</p><div class="options-container"><label><input type="radio" name="q8-6" value="a"> Runs directly on the physical hardware</label><label><input type="radio" name="q8-6" value="b"> Runs on standard operating systems as an application</label><label><input type="radio" name="q8-6" value="c"> Provides an interface identical to the host hardware</label><label><input type="radio" name="q8-6" value="d"> Is used primarily in datacenters</label></div></div>
+                <div class="question-block"><p class="question-text">7. What is the main challenge with emulation in virtualization?</p><div class="options-container"><label><input type="radio" name="q8-7" value="a"> High cost of implementation</label><label><input type="radio" name="q8-7" value="b"> Compatibility with different operating systems</label><label><input type="radio" name="q8-7" value="c"> Significantly slower performance than native code</label><label><input type="radio" name="q8-7" value="d"> Complexity of device drivers</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which virtualization type includes applications like Oracle Java and Microsoft.Net?</p><div class="options-container"><label><input type="radio" name="q8-8" value="a"> Type 1 hypervisor</label><label><input type="radio" name="q8-8" value="b"> Type 2 hypervisor</label><label><input type="radio" name="q8-8" value="c"> Programming-environment virtualization</label><label><input type="radio" name="q8-8" value="d"> Paravirtualization</label></div></div>
+                <div class="question-block"><p class="question-text">9. Which method does VMware primarily use to manage memory in VMs?</p><div class="options-container"><label><input type="radio" name="q8-9" value="a"> Direct memory access</label><label><input type="radio" name="q8-9" value="b"> Nested page tables</label><label><input type="radio" name="q8-9" value="c"> Binary translation</label><label><input type="radio" name="q8-9" value="d"> Memory ballooning</label></div></div>
+                <div class="question-block"><p class="question-text">10. Which of the following is a Type 0 hypervisor?</p><div class="options-container"><label><input type="radio" name="q8-10" value="a"> VMware ESX</label><label><input type="radio" name="q8-10" value="b"> Joyent SmartOS</label><label><input type="radio" name="q8-10" value="c"> IBM LPARS</label><label><input type="radio" name="q8-10" value="d"> Citrix XenServer</label></div></div>
+                <button type="submit" class="submit-btn">Check Unit 8 Answers</button>
+            </form>
+            <div id="results-8" class="results"></div>
+        </div>
+        
+        <div id="quiz-unit-9" class="quiz-content">
+            <h2>First Activity</h2>
+            <form id="quiz-form-9">
+                <div class="question-block"><p class="question-text">1. What is the purpose of cache coherence in a multiprocessor environment?</p><div class="options-container"><label><input type="radio" name="q9-1" value="a"> To ensure all CPUs have the most recent data in their caches</label><label><input type="radio" name="q9-1" value="b"> To manage memory allocation</label><label><input type="radio" name="q9-1" value="c"> To speed up the boot process</label><label><input type="radio" name="q9-1" value="d"> To provide fault tolerance</label></div></div>
+                <div class="question-block"><p class="question-text">2. Which of the following types of networks is most likely to connect systems within a single building?</p><div class="options-container"><label><input type="radio" name="q9-2" value="a"> Local Area Network (LAN)</label><label><input type="radio" name="q9-2" value="b"> Wide Area Network (WAN)</label><label><input type="radio" name="q9-2" value="c"> Metropolitan Area Network (MAN)</label><label><input type="radio" name="q9-2" value="d"> Personal Area Network (PAN)</label></div></div>
+                <div class="question-block"><p class="question-text">3. Clustered systems often use a storage-area network (SAN) to:</p><div class="options-container"><label><input type="radio" name="q9-3" value="a"> Increase processing speed</label><label><input type="radio" name="q9-3" value="b"> Enhance graphical performance</label><label><input type="radio" name="q9-3" value="c"> Share storage resources</label><label><input type="radio" name="q9-3" value="d"> Improve user authentication</label></div></div>
+                <div class="question-block"><p class="question-text">4. Which type of system call is used to create a new file?</p><div class="options-container"><label><input type="radio" name="q9-4" value="a"> Process control</label><label><input type="radio" name="q9-4" value="b"> Device management</label><label><input type="radio" name="q9-4" value="c"> File management</label><label><input type="radio" name="q9-4" value="d"> Information maintenance</label></div></div>
+                <div class="question-block"><p class="question-text">5. What does the information maintenance system call provide?</p><div class="options-container"><label><input type="radio" name="q9-5" value="a"> Send messages</label><label><input type="radio" name="q9-5" value="b"> Get time or date</label><label><input type="radio" name="q9-5" value="c"> Debugging</label><label><input type="radio" name="q9-5" value="d"> Error detection</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which system program is used to support programming languages?</p><div class="options-container"><label><input type="radio" name="q9-6" value="a"> Communications</label><label><input type="radio" name="q9-6" value="b"> Compilers</label><label><input type="radio" name="q9-6" value="c"> File manipulation</label><label><input type="radio" name="q9-6" value="d"> Background services</label></div></div>
+                <div class="question-block"><p class="question-text">7. How is a process identified uniquely in most operating systems?</p><div class="options-container"><label><input type="radio" name="q9-7" value="a"> By its name</label><label><input type="radio" name="q9-7" value="b"> By its priority</label><label><input type="radio" name="q9-7" value="c"> By its memory address</label><label><input type="radio" name="q9-7" value="d"> By its process identifier (PID)</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which system call is used to create a new process in most operating systems?</p><div class="options-container"><label><input type="radio" name="q9-8" value="a"> fork()</label><label><input type="radio" name="q9-8" value="b"> exec()</label><label><input type="radio" name="q9-8" value="c"> wait()</label><label><input type="radio" name="q9-8" value="d"> exit()</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the primary role of a thread library?</p><div class="options-container"><label><input type="radio" name="q9-9" value="a"> Provide an API for creating and managing threads</label><label><input type="radio" name="q9-9" value="b"> Manage kernel-level threads</label><label><input type="radio" name="q9-9" value="c"> Allocate memory to threads</label><label><input type="radio" name="q9-9" value="d"> Handle I/O operations for threads</label></div></div>
+                <div class="question-block"><p class="question-text">10. What type of threads are managed without kernel support?</p><div class="options-container"><label><input type="radio" name="q9-10" value="a"> User Threads</label><label><input type="radio" name="q9-10" value="b"> Kernel Threads</label><label><input type="radio" name="q9-10" value="c"> System Threads</label><label><input type="radio" name="q9-10" value="d"> Real-Time Threads</label></div></div>
+                <button type="submit" class="submit-btn">Check First Activity Answers</button>
+            </form>
+            <div id="results-9" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-10" class="quiz-content">
+            <h2>First Homework</h2>
+            <form id="quiz-form-10">
+                <div class="question-block"><p class="question-text">1. Which of the following is a key feature of symmetric multiprocessing?</p><div class="options-container"><label><input type="radio" name="q10-1" value="a"> Each processor is assigned a specific task</label><label><input type="radio" name="q10-1" value="b"> Processors perform all tasks equally</label><label><input type="radio" name="q10-1" value="c"> Only one processor is active at a time</label><label><input type="radio" name="q10-1" value="d"> Processors are located in different geographic locations</label></div></div>
+                <div class="question-block"><p class="question-text">2. What is the role of an interrupt in an operating system?</p><div class="options-container"><label><input type="radio" name="q10-2" value="a"> To manage file system operations</label><label><input type="radio" name="q10-2" value="b"> To transfer control to the interrupt service routine</label><label><input type="radio" name="q10-2" value="c"> To allocate memory to processes</label><label><input type="radio" name="q10-2" value="d"> To handle user inputs</label></div></div>
+                <div class="question-block"><p class="question-text">3. What is the principle of separating policy from mechanism?</p><div class="options-container"><label><input type="radio" name="q10-3" value="a"> Easier OS design</label><label><input type="radio" name="q10-3" value="b"> Flexibility in policy decisions</label><label><input type="radio" name="q10-3" value="c"> More secure system</label><label><input type="radio" name="q10-3" value="d"> Efficient resource allocation</label></div></div>
+                <div class="question-block"><p class="question-text">4. Which approach in OS structure provides abstraction?</p><div class="options-container"><label><input type="radio" name="q10-4" value="a"> Microkernel</label><label><input type="radio" name="q10-4" value="b"> Monolithic</label><label><input type="radio" name="q10-4" value="c"> Layered</label><label><input type="radio" name="q10-4" value="d"> Modular</label></div></div>
+                <div class="question-block"><p class="question-text">5. What happens when a process finishes executing its final statement and calls exit()?</p><div class="options-container"><label><input type="radio" name="q10-5" value="a"> It is terminated</label><label><input type="radio" name="q10-5" value="b"> It goes to the ready state</label><label><input type="radio" name="q10-5" value="c"> It is put back in the job queue</label><label><input type="radio" name="q10-5" value="d"> It is swapped out</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which of the following is NOT a reason for process termination?</p><div class="options-container"><label><input type="radio" name="q10-6" value="a"> Becoming idle</label><label><input type="radio" name="q10-6" value="b"> Exceeding resource utilization</label><label><input type="radio" name="q10-6" value="c"> Self-termination</label><label><input type="radio" name="q10-6" value="d"> Abnormal conditions during operation</label></div></div>
+                <div class="question-block"><p class="question-text">7. In process scheduling, which queue contains all the processes that are ready and waiting to execute?</p><div class="options-container"><label><input type="radio" name="q10-7" value="a"> Job queue</label><label><input type="radio" name="q10-7" value="b"> Ready queue</label><label><input type="radio" name="q10-7" value="c"> Device queue</label><label><input type="radio" name="q10-7" value="d"> Execution queue</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which model provides the most concurrency by mapping each user-level thread to a kernel thread?</p><div class="options-container"><label><input type="radio" name="q10-8" value="a"> One-to-One</label><label><input type="radio" name="q10-8" value="b"> Many-to-Many</label><label><input type="radio" name="q10-8" value="c"> Many-to-One</label><label><input type="radio" name="q10-8" value="d"> Two-Level</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the main advantage of the two-level threading model?</p><div class="options-container"><label><input type="radio" name="q10-9" value="a"> Lower memory usage</label><label><input type="radio" name="q10-9" value="b"> Simpler implementation</label><label><input type="radio" name="q10-9" value="c"> Allows user threads to be bound to kernel threads</label><label><input type="radio" name="q10-9" value="d"> Reduced context switching</label></div></div>
+                <div class="question-block"><p class="question-text">10. Which library is commonly used for user-level threading in UNIX systems?</p><div class="options-container"><label><input type="radio" name="q10-10" value="a"> POSIX Pthreads</label><label><input type="radio" name="q10-10" value="b"> Win32 Threads</label><label><input type="radio" name="q10-10" value="c"> Java Threads</label><label><input type="radio" name="q10-10" value="d"> C++ Threads</label></div></div>
+                <button type="submit" class="submit-btn">Check First Homework Answers</button>
+            </form>
+            <div id="results-10" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-11" class="quiz-content">
+            <h2>Second Activity</h2>
+            <form id="quiz-form-11">
+                <div class="question-block"><p class="question-text">1. Which scheduling algorithm can lead to starvation of processes?</p><div class="options-container"><label><input type="radio" name="q11-1" value="a"> First-Come, First-Served (FCFS)</label><label><input type="radio" name="q11-1" value="b"> Round Robin (RR)</label><label><input type="radio" name="q11-1" value="c"> Shortest-Job-First (SJF) and Priority scheduling</label><label><input type="radio" name="q11-1" value="d"> Multilevel Queue scheduling</label></div></div>
+                <div class="question-block"><p class="question-text">2. In a multilevel queue scheduling system, how are the queues typically managed?</p><div class="options-container"><label><input type="radio" name="q11-2" value="a"> All queues use the same scheduling algorithm</label><label><input type="radio" name="q11-2" value="b"> Each queue uses its own scheduling algorithm</label><label><input type="radio" name="q11-2" value="c"> Queues are managed on a first-come, first-served basis</label><label><input type="radio" name="q11-2" value="d"> Queues are prioritized based on the length of the CPU burst</label></div></div>
+                <div class="question-block"><p class="question-text">3. How is internal fragmentation calculated in a paging system?</p><div class="options-container"><label><input type="radio" name="q11-3" value="a"> By the size of the largest hole</label><label><input type="radio" name="q11-3" value="b"> By the difference between page size and the remaining bytes</label><label><input type="radio" name="q11-3" value="c"> By the number of pages</label><label><input type="radio" name="q11-3" value="d"> By the number of frames</label></div></div>
+                <div class="question-block"><p class="question-text">4. What is the purpose of the page-table base register (PTBR)?</p><div class="options-container"><label><input type="radio" name="q11-4" value="a"> It points to the page table in main memory</label><label><input type="radio" name="q11-4" value="b"> It indicates the size of the page table</label><label><input type="radio" name="q11-4" value="c"> It stores the physical address</label><label><input type="radio" name="q11-4" value="d"> It holds the page offset</label></div></div>
+                <div class="question-block"><p class="question-text">5. What is the primary disadvantage of using polling for I/O operations?</p><div class="options-container"><label><input type="radio" name="q11-5" value="a"> High CPU usage if the device is slow</label><label><input type="radio" name="q11-5" value="b"> Complexity in implementation</label><label><input type="radio" name="q11-5" value="c"> High latency in data transfer</label><label><input type="radio" name="q11-5" value="d"> Inability to handle multiple devices</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which of the following describes the use of nonmaskable interrupts (NMI)?</p><div class="options-container"><label><input type="radio" name="q11-6" value="a"> They can be ignored by the CPU</label><label><input type="radio" name="q11-6" value="b"> They are used for critical hardware errors</label><label><input type="radio" name="q11-6" value="c"> They have lower priority than maskable interrupts</label><label><input type="radio" name="q11-6" value="d"> They are used for normal I/O operations</label></div></div>
+                <div class="question-block"><p class="question-text">7. Which characteristic is NOT typically used to classify I/O devices?</p><div class="options-container"><label><input type="radio" name="q11-7" value="a"> Speed of operation</label><label><input type="radio" name="q11-7" value="b"> Manufacturer</label><label><input type="radio" name="q11-7" value="c"> Sequential or random-access</label><label><input type="radio" name="q11-7" value="d"> Synchronous or asynchronous</label></div></div>
+                <div class="question-block"><p class="question-text">8. How does binary translation work in a VMM?</p><div class="options-container"><label><input type="radio" name="q11-8" value="a"> Translates all instructions from guest CPU to native CPU dynamically</label><label><input type="radio" name="q11-8" value="b"> Executes guest instructions directly on the host CPU</label><label><input type="radio" name="q11-8" value="c"> Uses hardware support to run guest code</label><label><input type="radio" name="q11-8" value="d"> Runs the guest OS in user mode</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is a significant disadvantage of Type 2 hypervisors compared to other types?</p><div class="options-container"><label><input type="radio" name="q11-9" value="a"> Poorer overall performance</label><label><input type="radio" name="q11-9" value="b"> Higher cost</label><label><input type="radio" name="q11-9" value="c"> Limited support for guest OSes</label><label><input type="radio" name="q11-9" value="d"> More complex to set up</label></div></div>
+                <div class="question-block"><p class="question-text">10. In which environment is trap-and-emulate primarily used?</p><div class="options-container"><label><input type="radio" name="q11-10" value="a"> Programming-environment virtualization</label><label><input type="radio" name="q11-10" value="b"> Emulation</label><label><input type="radio" name="q11-10" value="c"> Paravirtualization</label><label><input type="radio" name="q11-10" value="d"> Full virtualization</label></div></div>
+                <button type="submit" class="submit-btn">Check Second Activity Answers</button>
+            </form>
+            <div id="results-11" class="results"></div>
+        </div>
+        
+        <div id="quiz-unit-12" class="quiz-content">
+            <h2>Second Homework</h2>
+            <form id="quiz-form-12">
+                <div class="question-block"><p class="question-text">1. In a multilevel feedback queue scheduling system, what determines when a process moves between queues?</p><div class="options-container"><label><input type="radio" name="q12-1" value="a"> The process priority</label><label><input type="radio" name="q12-1" value="b"> The length of the CPU burst</label><label><input type="radio" name="q12-1" value="c"> The process type (foreground or background)</label><label><input type="radio" name="q12-1" value="d"> A predefined set of rules for upgrading and demoting processes</label></div></div>
+                <div class="question-block"><p class="question-text">2. What is the effect of a small time quantum in Round Robin scheduling?</p><div class="options-container"><label><input type="radio" name="q12-2" value="a"> Higher throughput</label><label><input type="radio" name="q12-2" value="b"> Lower waiting time</label><label><input type="radio" name="q12-2" value="c"> Increased number of context switches</label><label><input type="radio" name="q12-2" value="d"> Improved CPU utilization</label></div></div>
+                <div class="question-block"><p class="question-text">3. Which criteria is used to evaluate the performance of scheduling algorithms?</p><div class="options-container"><label><input type="radio" name="q12-3" value="a"> CPU utilization, throughput, turnaround time, waiting time, and response time</label><label><input type="radio" name="q12-3" value="b"> Only CPU utilization and throughput</label><label><input type="radio" name="q12-3" value="c"> Only turnaround time and waiting time</label><label><input type="radio" name="q12-3" value="d"> Only response time and throughput</label></div></div>
+                <div class="question-block"><p class="question-text">4. How does a Translation Look-aside Buffer (TLB) improve memory access time?</p><div class="options-container"><label><input type="radio" name="q12-4" value="a"> By reducing the page size</label><label><input type="radio" name="q12-4" value="b"> By storing frequently accessed page-table entries</label><label><input type="radio" name="q12-4" value="c"> By increasing the page size</label><label><input type="radio" name="q12-4" value="d"> By adding more physical memory</label></div></div>
+                <div class="question-block"><p class="question-text">5. What is the role of the valid-invalid bit in a page table?</p><div class="options-container"><label><input type="radio" name="q12-5" value="a"> Indicates if a page is in the process' logical address space</label><label><input type="radio" name="q12-5" value="b"> Shows the physical address of the page</label><label><input type="radio" name="q12-5" value="c"> Stores the page offset</label><label><input type="radio" name="q12-5" value="d"> Keeps track of free frames</label></div></div>
+                <div class="question-block"><p class="question-text">6. Which structure can reduce the size of the page table in a 32-bit logical address space?</p><div class="options-container"><label><input type="radio" name="q12-6" value="a"> Single-level page table</label><label><input type="radio" name="q12-6" value="b"> Hierarchical page tables</label><label><input type="radio" name="q12-6" value="c"> Contiguous page table</label><label><input type="radio" name="q12-6" value="d"> Inverted page table</label></div></div>
+                <div class="question-block"><p class="question-text">7. Which type of directory organization allows different users to have the same file name?</p><div class="options-container"><label><input type="radio" name="q12-7" value="a"> Single-level directory</label><label><input type="radio" name="q12-7" value="b"> Two-level directory</label><label><input type="radio" name="q12-7" value="c"> Acyclic-graph directory</label><label><input type="radio" name="q12-7" value="d"> Hierarchical directory</label></div></div>
+                <div class="question-block"><p class="question-text">8. Which access type in Unix allows a user to execute a file?</p><div class="options-container"><label><input type="radio" name="q12-8" value="a"> Read</label><label><input type="radio" name="q12-8" value="b"> Write</label><label><input type="radio" name="q12-8" value="c"> Execute</label><label><input type="radio" name="q12-8" value="d"> Append</label></div></div>
+                <div class="question-block"><p class="question-text">9. What is the purpose of nested page tables in virtualization?</p><div class="options-container"><label><input type="radio" name="q12-9" value="a"> To manage virtual memory for multiple guests</label><label><input type="radio" name="q12-9" value="b"> To allocate CPU resources</label><label><input type="radio" name="q12-9" value="c"> To improve I/O performance</label><label><input type="radio" name="q12-9" value="d"> To handle network traffic</label></div></div>
+                <div class="question-block"><p class="question-text">10. Which virtualization type is characterized by not presenting an exact duplication of the underlying hardware?</p><div class="options-container"><label><input type="radio" name="q12-10" value="a"> Full virtualization</label><label><input type="radio" name="q12-10" value="b"> Paravirtualization</label><label><input type="radio" name="q12-10" value="c"> Emulation</label><label><input type="radio" name="q12-10" value="d"> Application containment</label></div></div>
+                <button type="submit" class="submit-btn">Check Second Homework Answers</button>
+            </form>
+            <div id="results-12" class="results"></div>
+        </div>
+
+        <div id="quiz-unit-13" class="quiz-content">
+            <h2>Monthly Test (الاختبار الشهري)</h2>
+            <form id="quiz-form-13">
+                 <div class="question-block"><p class="question-text">1. Which of the following is NOT a component of a computer system?</p><div class="options-container"><label><input type="radio" name="q13-1" value="a"> Hardware</label><label><input type="radio" name="q13-1" value="b"> Operating System</label><label><input type="radio" name="q13-1" value="c"> Application Programs</label><label><input type="radio" name="q13-1" value="d"> Internet</label></div></div>
+                 <div class="question-block"><p class="question-text">2. What is the function of a device driver in an operating system?</p><div class="options-container"><label><input type="radio" name="q13-2" value="a"> To provide a uniform interface between the controller and the kernel</label><label><input type="radio" name="q13-2" value="b"> To directly handle all I/O operations</label><label><input type="radio" name="q13-2" value="c"> To manage the boot process of the system</label><label><input type="radio" name="q13-2" value="d"> To control user access to system resources</label></div></div>
+                 <div class="question-block"><p class="question-text">3. In a multiprogramming environment, the operating system must switch between different jobs to:</p><div class="options-container"><label><input type="radio" name="q13-3" value="a"> Improve user interface</label><label><input type="radio" name="q13-3" value="b"> Save energy</label><label><input type="radio" name="q13-3" value="c"> Enhance network performance</label><label><input type="radio" name="q13-3" value="d"> Keep the CPU and I/O devices busy</label></div></div>
+                 <div class="question-block"><p class="question-text">4. Which user interface is almost always present in operating systems?</p><div class="options-container"><label><input type="radio" name="q13-4" value="a"> Command-Line Interface (CLI)</label><label><input type="radio" name="q13-4" value="b"> Graphics User Interface (GUI)</label><label><input type="radio" name="q13-4" value="c"> Touch-screen</label><label><input type="radio" name="q13-4" value="d"> User Interface (UI)</label></div></div>
+                 <div class="question-block"><p class="question-text">5. Which method is used for process communication over a network?</p><div class="options-container"><label><input type="radio" name="q13-5" value="a"> Shared memory</label><label><input type="radio" name="q13-5" value="b"> Message passing</label><label><input type="radio" name="q13-5" value="c"> Packets moved by OS</label><label><input type="radio" name="q13-5" value="d"> All of the above</label></div></div>
+                 <div class="question-block"><p class="question-text">6. Which interface allows direct command entry?</p><div class="options-container"><label><input type="radio" name="q13-6" value="a"> GUI</label><label><input type="radio" name="q13-6" value="b"> Batch</label><label><input type="radio" name="q13-6" value="c"> CLI</label><label><input type="radio" name="q13-6" value="d"> Touchscreen</label></div></div>
+                 <div class="question-block"><p class="question-text">7. In a multitasking mobile system, what is the role of the foreground process?</p><div class="options-container"><label><input type="radio" name="q13-7" value="a"> Running in the background</label><label><input type="radio" name="q13-7" value="b"> Running a single short task</label><label><input type="radio" name="q13-7" value="c"> Controlled via user interface</label><label><input type="radio" name="q13-7" value="d"> Running without limits</label></div></div>
+                 <div class="question-block"><p class="question-text">8. Which of the following is NOT a state of a process?</p><div class="options-container"><label><input type="radio" name="q13-8" value="a"> Paused</label><label><input type="radio" name="q13-8" value="b"> New</label><label><input type="radio" name="q13-8" value="c"> Running</label><label><input type="radio" name="q13-8" value="d"> Terminated</label></div></div>
+                 <div class="question-block"><p class="question-text">9. Which type of process spends more time doing I/O than computations?</p><div class="options-container"><label><input type="radio" name="q13-9" value="a"> CPU-bound process</label><label><input type="radio" name="q13-9" value="b"> Memory-bound process</label><label><input type="radio" name="q13-9" value="c"> I/O-bound process</label><label><input type="radio" name="q13-9" value="d"> Time-bound process</label></div></div>
+                 <div class="question-block"><p class="question-text">10. What does the traditional view of a process consist of?</p><div class="options-container"><label><input type="radio" name="q13-10" value="a"> Code, data, stack, and heap</label><label><input type="radio" name="q13-10" value="b"> Process context, code, data, and stack</label><label><input type="radio" name="q13-10" value="c"> Thread, code, data, and kernel context</label><label><input type="radio" name="q13-10" value="d"> Program counter, stack, and heap</label></div></div>
+                 <div class="question-block"><p class="question-text">11. What is a thread sometimes referred to as?</p><div class="options-container"><label><input type="radio" name="q13-11" value="a"> Heavyweight process</label><label><input type="radio" name="q13-11" value="b"> Lightweight process</label><label><input type="radio" name="q13-11" value="c"> Kernel-level process</label><label><input type="radio" name="q13-11" value="d"> User-level process</label></div></div>
+                 <div class="question-block"><p class="question-text">12. What is one advantage of creating threads over creating processes in terms of resource allocation?</p><div class="options-container"><label><input type="radio" name="q13-12" value="a"> Economy</label><label><input type="radio" name="q13-12" value="b"> Isolation</label><label><input type="radio" name="q13-12" value="c"> Portability</label><label><input type="radio" name="q13-12" value="d"> Compatibility</label></div></div>
+                 <div class="question-block"><p class="question-text">13. Which of the following is a key feature of symmetric multiprocessing?</p><div class="options-container"><label><input type="radio" name="q13-13" value="a"> Each processor is assigned a specific task</label><label><input type="radio" name="q13-13" value="b"> Processors perform all tasks equally</label><label><input type="radio" name="q13-13" value="c"> Only one processor is active at a time</label><label><input type="radio" name="q13-13" value="d"> Processors are located in different geographic locations</label></div></div>
+                 <div class="question-block"><p class="question-text">14. Which approach in OS structure provides abstraction?</p><div class="options-container"><label><input type="radio" name="q13-14" value="a"> Microkernel</label><label><input type="radio" name="q13-14" value="b"> Monolithic</label><label><input type="radio" name="q13-14" value="c"> Layered</label><label><input type="radio" name="q13-14" value="d"> Modular</label></div></div>
+                 <div class="question-block"><p class="question-text">15. What type of threads are managed without kernel support?</p><div class="options-container"><label><input type="radio" name="q13-15" value="a"> User Threads</label><label><input type="radio" name="q13-15" value="b"> Kernel Threads</label><label><input type="radio" name="q13-15" value="c"> System Threads</label><label><input type="radio" name="q13-15" value="d"> Real-Time Threads</label></div></div>
+                 <div class="question-block"><p class="question-text">16. What does the information maintenance system call provide?</p><div class="options-container"><label><input type="radio" name="q13-16" value="a"> Send messages</label><label><input type="radio" name="q13-16" value="b"> Get time or date</label><label><input type="radio" name="q13-16" value="c"> Debugging</label><label><input type="radio" name="q13-16" value="d"> Error detection</label></div></div>
+                 <div class="question-block"><p class="question-text">17. How does deferred cancellation handle thread termination?</p><div class="options-container"><label><input type="radio" name="q13-17" value="a"> The thread is immediately terminated</label><label><input type="radio" name="q13-17" value="b"> Resources are deallocated instantly</label><label><input type="radio" name="q13-17" value="c"> Cancellation occurs only after the target thread checks a flag</label><label><input type="radio" name="q13-17" value="d"> The thread continues running until completion</label></div></div>
+                 <div class="question-block"><p class="question-text">18. What OS structure is used by Apple Mac OS X?</p><div class="options-container"><label><input type="radio" name="q13-18" value="a"> Monolithic</label><label><input type="radio" name="q13-18" value="b"> Microkernel</label><label><input type="radio" name="q13-18" value="c"> Hybrid</label><label><input type="radio" name="q13-18" value="d"> Modular</label></div></div>
+                 <div class="question-block"><p class="question-text">19. What happens when a thread calls the fork() system call?</p><div class="options-container"><label><input type="radio" name="q13-19" value="a"> Only the calling thread is duplicated</label><label><input type="radio" name="q13-19" value="b"> A new process is created, which may or may not duplicate all threads</label><label><input type="radio" name="q13-19" value="c"> The calling thread is terminated</label><label><input type="radio" name="q13-19" value="d"> All threads in the process are terminated</label></div></div>
+                 <div class="question-block"><p class="question-text">20. What is the primary OS structure of Linux?</p><div class="options-container"><label><input type="radio" name="q13-20" value="a"> Monolithic</label><label><input type="radio" name="q13-20" value="b"> Microkernel</label><label><input type="radio" name="q13-20" value="c"> Layered</label><label><input type="radio" name="q13-20" value="d"> Hybrid</label></div></div>
+                <button type="submit" class="submit-btn">Check Monthly Test Answers</button>
+            </form>
+            <div id="results-13" class="results"></div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- MASTER JAVASCRIPT ---
+        const allCorrectAnswers = {
+            1: ['c', 'c', 'a', 'a', 'd', 'd', 'c', 'd', 'd', 'd'],
+            2: ['c', 'd', 'd', 'a', 'b', 'b', 'd', 'c', 'b', 'a'],
+            3: ['d', 'c', 'a', 'd', 'c', 'b', 'b', 'd', 'a', 'c'],
+            4: ['a', 'b', 'b', 'c', 'b', 'c', 'b', 'a', 'c', 'a'],
+            5: ['d', 'b', 'b', 'b', 'b', 'c', 'b', 'c', 'c', 'a'],
+            6: ['c', 'd', 'b', 'b', 'd', 'a', 'b', 'b', 'b', 'b'],
+            7: ['b', 'b', 'a', 'a', 'c', 'b', 'c', 'c', 'a', 'c'],
+            8: ['b', 'c', 'b', 'c', 'c', 'b', 'c', 'c', 'd', 'c'],
+            9: ['a', 'a', 'c', 'c', 'b', 'b', 'd', 'a', 'a', 'a'],
+            10: ['b', 'b', 'b', 'c', 'a', 'a', 'b', 'a', 'c', 'a'],
+            11: ['c', 'b', 'b', 'a', 'a', 'b', 'b', 'a', 'a', 'd'],
+            12: ['d', 'c', 'a', 'b', 'a', 'b', 'b', 'c', 'a', 'b'],
+            13: ['d', 'a', 'd', 'd', 'd', 'c', 'c', 'a', 'c', 'b', 'b', 'a', 'b', 'c', 'a', 'b', 'c', 'c', 'b', 'a']
+        };
+
+        const quizMenu = document.getElementById('quiz-menu');
+        const backButton = document.getElementById('back-to-menu');
+        
+        function showQuiz(unitNumber) {
+            quizMenu.style.display = 'none';
+            backButton.style.display = 'block';
+
+            document.querySelectorAll('.quiz-content').forEach(quiz => {
+                quiz.style.display = 'none';
+            });
+
+            document.getElementById(`quiz-unit-${unitNumber}`).style.display = 'block';
+        }
+
+        function showMenu() {
+            quizMenu.style.display = 'block';
+            backButton.style.display = 'none';
+            document.querySelectorAll('.quiz-content').forEach(quiz => {
+                quiz.style.display = 'none';
+            });
+        }
+
+        for (let unit = 1; unit <= 13; unit++) {
+            const quizForm = document.getElementById(`quiz-form-${unit}`);
+            if(quizForm) {
+                quizForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    gradeQuiz(unit);
+                });
+            }
+        }
+
+        function gradeQuiz(unitNumber) {
+            const correctAnswers = allCorrectAnswers[unitNumber];
+            const quizForm = document.getElementById(`quiz-form-${unitNumber}`);
+            const totalQuestions = correctAnswers.length;
+            let score = 0;
+            
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionName = `q${unitNumber}-${i}`;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                const allRadios = document.querySelectorAll(`input[name="${questionName}"]`);
+
+                allRadios.forEach(radio => { radio.disabled = true; });
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctAnswer = correctAnswers[i - 1];
+                    const selectedLabel = selectedOption.parentElement;
+
+                    if (userAnswer === correctAnswer) {
+                        score++;
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        const correctRadio = document.querySelector(`input[name="${questionName}"][value="${correctAnswer}"]`);
+                        if (correctRadio) {
+                            correctRadio.parentElement.classList.add('correct');
+                        }
+                    }
+                } else {
+                     const correctRadio = document.querySelector(`input[name="${questionName}"][value="${correctAnswers[i-1]}"]`);
+                     if (correctRadio) {
+                        correctRadio.parentElement.classList.add('correct');
+                     }
+                }
+            }
+
+            const resultsContainer = document.getElementById(`results-${unitNumber}`);
+            resultsContainer.innerHTML = `You scored ${score} out of ${totalQuestions}!`;
+            
+            const submitButton = quizForm.querySelector('.submit-btn');
+            if(submitButton) {
+                submitButton.disabled = true;
+                submitButton.style.backgroundColor = '#6c757d';
+                submitButton.style.cursor = 'not-allowed';
+            }
+        }
+    </script>
+
+</body>
+</html>
